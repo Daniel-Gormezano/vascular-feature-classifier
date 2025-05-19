@@ -2,7 +2,7 @@
 
 <a id="readme-top"></a>
 
-A Streamlit-powered Python library and web app for classifying renal vascular conditions from quantitative pathomics metadata.
+This project is a Streamlit-powered Python library that classifies vascular conditions (hyalinosis, fibrosis, and combined) based on artery metadata using a calibrated XGBoost model.
 
 ---
 
@@ -27,19 +27,19 @@ A Streamlit-powered Python library and web app for classifying renal vascular co
 
 ## About The Project
 
-The **Vascular Feature Classifier** allows researchers to upload quantitative vascular image metadata (CSV) and receive multiclass predictions (no lesion, hyalinosis, fibrosis, hyalinosis + fibrosis) along with confidence scores and per-class probabilities. It uses a pre-trained ensemble model (`rf_model.pkl`) with data standardization and a consistent feature set.
+Diagnosing vascular damage visually from histology or biopsy is labor-intensive and has considerable inter-observer variability. This metadata-driven classifier, the **Vascular Feature Classifier**, allows researchers to upload quantitative vascular image metadata (CSV) and receive multiclass predictions (no lesion, hyalinosis, fibrosis, and hyalinosis + fibrosis) along with confidence scores and per-class probabilities. It uses a pre-trained ensemble model (`xgb_model.pkl`) with data standardization and a consistent feature set.
 
-This tool streamlines classification of minority vascular conditions by leveraging sample weighting, hyperparameter-tuned XGBoost, and a lightweight Streamlit interface.
+This tool streamlines the classification of minority vascular conditions by leveraging sample weighting and hyperparameter-tuned XGBoost to achieve the best tradeoff among overall accuracy and minority-class recall, as measured by AUC and F1 scores.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Features
 
-* **Batch predictions**: Upload a CSV, get predictions for all rows
-* **Per-class confidence**: Display full probability vector and highlight confidence levels
-* **Error highlighting**: Automatically mark misclassified rows
-* **Downloadable results**: Export predictions as CSV
-* **Lightweight UI**: Streamlit-based, minimal dependencies
+* **Batch predictions**: Upload a CSV of patient metadata and get predictions for all rows.
+* **Per-sample confidence**: Display full probability vector and highlight confidence levels.
+* **Error highlighting**: Automatically highlights misclassified rows.
+* **Downloadable results**: Export predictions as a CSV file.
+* **Lightweight UI**: Streamlit-based program with minimal dependencies.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -67,7 +67,7 @@ Follow these steps to get a local copy running.
 1. **Clone the repo**
 
    ```bash
-   git clone https://github.com/<YourUser>/vascular-feature-classifier.git
+   git clone https://github.com/Daniel-Gormezano/vascular-feature-classifier.git
    cd vascular-feature-classifier
    ```
 2. **Create & activate a virtual environment (optional but recommended)**
@@ -89,57 +89,56 @@ Follow these steps to get a local copy running.
 
 1. **Ensure assets** folder contains:
 
-   * `rf_model.pkl` (trained Random Forest or XGBoost model)
-   * `scaler.pkl` (StandardScaler fit on training data)
-   * `feature_list.txt` (ordered list of feature column names)
-2. **Run the Streamlit app**
+   * `xgb_model.pkl` (XGBoost model).
+   * `scaler.pkl` (StandardScaler fit on training data).
+   * `feature_list.txt` (ordered list of feature column names).
+2. **Run the Streamlit app in your terminal**
 
    ```bash
    streamlit run app.py
    ```
-3. **Upload** your CSV file via the sidebar
-4. **View & download** the prediction table
+3. **Upload** your CSV file via the sidebar.
+4. **View & download** the prediction table.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Model & Metrics
 
-* **Model**: XGBoost with sample weighting to emphasize minority class (hyalinosis + fibrosis)
-* **Preprocessing**: Missing values replaced by column means, features standardized
+* **Algorithm**: XGBoost classifier.
+* **Features**: 376 metadata columns, which include intensity, texture, area, spatial distances, and more.
+* **Preprocessing**: Missing values replaced by column means, and features were standardized using StandardScaler.
+* **Handling of Class Imbalance**: Sample weighting was introduced for classes 2 (fibrosis) and 3 (hyalinosis + fibrosis).
 * **Metrics**:
 
-  * **Weighted & Macro F1-score**
-  * **Weighted & Macro AUC (one-vs-rest)**
-  * **Confusion matrix** across stratified 5-fold CV
-
-**Performance Highlights:**
-
-* Macro F1 improved from \~0.70 (raw RF) to \~0.83 (weighted XGBoost)
-* Macro AUC up to \~0.996 with hyperparameter tuning and sample weights
+  * **Weighted AUC**: 0.9968
+  * **Macro AUC**: 0.9949
+  * **Weighted F1 Score**: 0.9777
+  * **Macro F1 Score**: 0.8555
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Project Structure
 
 ```
-├── app.py               # Streamlit UI entrypoint
-├── model_utils.py       # Prediction & preprocessing library
-├── assets/              # Serialized model & metadata
-│   ├── rf_model.pkl
+├── app.py               # Streamlit UI entrypoint.
+├── model_utils.py       # Prediction and preprocessing library.
+├── assets/              # Serialized model and metadata.
+│   ├── xgb_model.pkl
 │   ├── scaler.pkl
 │   └── feature_list.txt
-├── requirements.txt     # Python dependencies
-└── README.md            # Project documentation
+├── requirements.txt     # Python dependencies.
+├── README.md            # Project documentation.
+└── LICENSE.txt          # Licensing information.
+
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Future Improvements
 
-* Integrate SMOTE/ADASYN for synthetic minority oversampling
-* Add model interpretability (SHAP or LIME)
-* Expand to multi-omics integration (transcriptomics, proteomics)
-* Develop desktop GUI wrapper (PyQT or Electron)
+* **Improving minority class accuracy** through deeper hyperparameter tuning (XGBoost and class weighting led to substantial improvements).
+* **Expanding to multi-omics integration algorithms** (transcriptomics, proteomics).
+* **Implementing efficient vessel segmentation** through computer vision networks to improve feature extraction and vessel segmentation.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -168,11 +167,12 @@ This project is licensed under the MIT License. See [LICENSE](LICENSE) for detai
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
 ## Acknowledgements
 
 I sincerely thank Dr. Yuankai Huo for his unwavering support and enthusiasm. His expertise helped me define the project scope, make critical methodological decisions, and positively influence my educational path. His encouragement was a constant source of inspiration throughout this journey!
 
 I am deeply grateful for my co-mentor Yuechen Yang ([GitHub](https://github.com/yuechen-yang)), whose patient mentorship guided me through every aspect of this project, from understanding the data retrieval process and preprocessing code to presenting my findings and discussing future directions. She consistently made herself available, offered invaluable career advice, and played a pivotal role in my growth as a data analyst!
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
