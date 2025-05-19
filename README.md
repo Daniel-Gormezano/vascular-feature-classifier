@@ -161,7 +161,18 @@ This project is licensed under the MIT License. See [LICENSE](LICENSE) for detai
 
 ## Contact
 
-Daniel Gormezano - [LinkedIn - Daniel Gormezano]([https://twitter.com/YourHandle](https://www.linkedin.com/in/dgormezano/)) - [dangorme@gmail.com](mailto:dangorme@gmail.com)
+* **LinkedIn**: [Daniel Gormezano](https://www.linkedin.com/in/dgormezano/)
+* **Email**: [dangorme@gmail.com](mailto:dangorme@gmail.com)
+* **GitHub**: [Daniel‐Gormezano](https://github.com/dgormezano)
+* **Project Link**: [https://github.com/Daniel-Gormezano/vascular-feature-classifier](https://github.com/Daniel-Gormezano/vascular-feature-classifier)
 
-Project Link: [https://github.com/Daniel-Gormezano/vascular-feature-classifier](https://github.com/Daniel-Gormezano/vascular-feature-classifier)
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+## Acknowledgements
+
+I sincerely thank Dr. Yuankai Huo for his unwavering support and enthusiasm. His expertise helped me define the project scope, make critical methodological decisions, and positively influence my educational path. His encouragement was a constant source of inspiration throughout this journey!
+
+I am deeply grateful for my co-mentor Yuechen Yang ([GitHub](https://github.com/yuechen-yang)), whose patient mentorship guided me through every aspect of this project, from understanding the data retrieval process and preprocessing code to presenting my findings and discussing future directions. She consistently made herself available, offered invaluable career advice, and played a pivotal role in my growth as a data analyst!
+
 
