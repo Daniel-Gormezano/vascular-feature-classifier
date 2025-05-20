@@ -2,7 +2,7 @@
 import io
 import streamlit as st
 import pandas as pd
-from model_utils import predict_batch
+from vascular_classifier.model_utils import predict_batch
 
 #Set page configuration and hide the default UI.
 st.set_page_config(page_title = "Vascular Condition Classifier",
