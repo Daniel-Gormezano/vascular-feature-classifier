@@ -37,8 +37,8 @@ This tool streamlines the classification of minority vascular conditions by leve
 
 * **Batch predictions**: Upload a CSV of patient metadata and get predictions for all rows.
 * **Per-sample confidence**: Display full probability vector and highlight confidence levels.
-* **Error highlighting**: Automatically highlights misclassified rows.
-* **Downloadable results with Highlighting**: Export predictions as a xslx file with conditional highlighting.
+* **Error highlighting**: Automatically highlights misclassified rows (Using Streamlit).
+* **Downloadable results with Highlighting**: Export predictions as a xslx file with conditional highlighting (Conditional Highlighting Only Available on Streamlit).
 * **Lightweight UI**: Streamlit-based program with minimal dependencies.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
