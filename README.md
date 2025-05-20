@@ -55,7 +55,7 @@ This tool streamlines the classification of minority vascular conditions by leve
 
 ## Getting Started
 
-Follow these steps to get a local copy running.
+Follow these steps to get a local copy running and use the package in Jupyter or via Streamlit.
 
 ### Prerequisites
 
@@ -64,40 +64,54 @@ Follow these steps to get a local copy running.
 
 ### Installation
 
-1. **Clone the repo**
+1. Clone the repo:
 
    ```bash
    git clone https://github.com/Daniel-Gormezano/vascular-feature-classifier.git
    cd vascular-feature-classifier
    ```
-2. **Create & activate a virtual environment (optional but recommended)**
+
+2. Install the package locally (editable mode):
 
    ```bash
-   python -m venv venv
-   source venv/bin/activate  # macOS/Linux
-   venv\Scripts\activate     # Windows
+   pip install -e .
    ```
-3. **Install dependencies**
+
+   *Or install the released version from PyPI:* `pip install vascular-classifier`
+
+### Usage in a Jupyter Notebook
+
+In a notebook cell, ensure your kernel sees the package and run:
+
+```python
+#(Re)install in the current kernel environment.
+%pip install -e .
+
+#Import and run predictions.
+import pandas as pd
+from vascular_classifier.model_utils import predict_batch
+
+#Load your CSV file.
+df = pd.read_csv("path/to/your_data.csv")
+#Normalize any `<` or `>` in column names to abide by XGBoost column-naming conventions.
+df.columns = df.columns.str.replace('<','_', regex = False).str.replace('>','_', regex = False)
+
+#Generate predictions.
+results = predict_batch(df)
+results.head()
+```
+
+### Usage via Streamlit UI
+
+1. Launch the app:
 
    ```bash
-   pip install -r requirements.txt
+   streamlit run vascular_classifier/app.py
    ```
+2. Upload your CSV file using the sidebar.
+3. View colored predictions.
+4. Download an Excel file with styling.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## Usage
-
-1. **Ensure assets** folder contains:
-
-   * `xgb_model.pkl` (XGBoost model).
-   * `scaler.pkl` (StandardScaler fit on training data).
-2. **Run the Streamlit app in your terminal**
-
-   ```bash
-   streamlit run app.py
-   ```
-3. **Upload** your CSV file via the sidebar.
-4. **View & download** the prediction table.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
