@@ -120,14 +120,17 @@ Follow these steps to get a local copy running.
 ## Project Structure
 
 ```
-├── app.py               # Streamlit UI entrypoint.
-├── model_utils.py       # Prediction and preprocessing library.
-├── assets/              # Serialized model and metadata.
-│   ├── xgb_model.pkl
-│   └── scaler.pkl
-├── requirements.txt     # Python dependencies.
-├── README.md            # Project documentation.
-└── LICENSE.txt          # Licensing information.
+├── LICENSE              #Licensing information
+├── README.md            #Project documentation
+├── requirements.txt     #Python dependencies
+├── setup.py             #Package install script
+└── vascular_classifier  #Main Python package
+    ├── __init__.py      #Package initializer
+    ├── app.py           #Streamlit UI entrypoint
+    ├── model_utils.py   #Prediction and preprocessing library
+    └── assets           #Serialized model and metadata
+        ├── scaler.pkl       #Saved StandardScaler object
+        └── xgb_model.pkl    #Saved XGBoost model
 
 ```
 
