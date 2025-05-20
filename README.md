@@ -38,7 +38,7 @@ This tool streamlines the classification of minority vascular conditions by leve
 * **Batch predictions**: Upload a CSV of patient metadata and get predictions for all rows.
 * **Per-sample confidence**: Display full probability vector and highlight confidence levels.
 * **Error highlighting**: Automatically highlights misclassified rows.
-* **Downloadable results**: Export predictions as a CSV file.
+* **Downloadable results with Highlighting**: Export predictions as a xslx file with conditional highlighting.
 * **Lightweight UI**: Streamlit-based program with minimal dependencies.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -91,7 +91,6 @@ Follow these steps to get a local copy running.
 
    * `xgb_model.pkl` (XGBoost model).
    * `scaler.pkl` (StandardScaler fit on training data).
-   * `feature_list.txt` (ordered list of feature column names).
 2. **Run the Streamlit app in your terminal**
 
    ```bash
@@ -108,6 +107,7 @@ Follow these steps to get a local copy running.
 * **Features**: 376 metadata columns, which include intensity, texture, area, spatial distances, and more.
 * **Preprocessing**: Missing values replaced by column means, and features were standardized using StandardScaler.
 * **Handling of Class Imbalance**: Sample weighting was introduced for classes 2 (fibrosis) and 3 (hyalinosis + fibrosis).
+* **Conditional Highlighting**: >= 0.95 confidence is Green, 0.6 >= confidence is Yellow, < 0.6 confidence is Red.
 * **Metrics**:
 
   * **Weighted AUC**: 0.9968
@@ -124,8 +124,7 @@ Follow these steps to get a local copy running.
 ├── model_utils.py       # Prediction and preprocessing library.
 ├── assets/              # Serialized model and metadata.
 │   ├── xgb_model.pkl
-│   ├── scaler.pkl
-│   └── feature_list.txt
+│   └── scaler.pkl
 ├── requirements.txt     # Python dependencies.
 ├── README.md            # Project documentation.
 └── LICENSE.txt          # Licensing information.
