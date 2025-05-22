@@ -2,7 +2,7 @@
 
 <a id="readme-top"></a>
 
-This project is a Streamlit-powered Python library that classifies vascular conditions (hyalinosis, fibrosis, and combined) based on artery metadata using a calibrated XGBoost model.
+This project is a Streamlit-powered Python library that classifies vascular conditions (hyalinosis, fibrosis, and combined) based on artery metadata from CellProfiler using a calibrated XGBoost model.
 
 ---
 
@@ -27,7 +27,7 @@ This project is a Streamlit-powered Python library that classifies vascular cond
 
 ## About The Project
 
-Diagnosing vascular damage visually from histology or biopsy is labor-intensive and has considerable inter-observer variability. This metadata-driven classifier, the **Vascular Feature Classifier**, allows researchers to upload quantitative vascular image metadata (CSV) and receive multiclass predictions (no lesion, hyalinosis, fibrosis, and hyalinosis + fibrosis) along with confidence scores and per-class probabilities. It uses a pre-trained ensemble model (`xgb_model.pkl`) with data standardization and a consistent feature set.
+Diagnosing vascular damage visually from histology or biopsy is labor-intensive and has considerable inter-observer variability. This metadata-driven classifier, the **Vascular Feature Classifier**, allows researchers to upload quantitative vascular image metadata (CSV) from CellProfiler and receive multiclass predictions (no lesion, hyalinosis, fibrosis, and hyalinosis + fibrosis) along with confidence scores and per-class probabilities. It uses a pre-trained ensemble model (`xgb_model.pkl`) with data standardization and a consistent feature set.
 
 This tool streamlines the classification of minority vascular conditions by leveraging sample weighting and hyperparameter-tuned XGBoost to achieve the best tradeoff among overall accuracy and minority-class recall, as measured by AUC and F1 scores.
 
@@ -35,7 +35,7 @@ This tool streamlines the classification of minority vascular conditions by leve
 
 ## Features
 
-* **Batch predictions**: Upload a CSV of patient metadata and get predictions for all rows.
+* **Batch predictions**: Upload a CSV of patient metadata from CellProfiler and get predictions for all rows.
 * **Per-sample confidence**: Display full probability vector and highlight confidence levels.
 * **Error highlighting**: Automatically highlights misclassified rows (Using Streamlit).
 * **Downloadable results with Highlighting**: Export predictions as a xslx file with conditional highlighting (Conditional Highlighting Only Available on Streamlit).
@@ -134,17 +134,18 @@ results.head()
 ## Project Structure
 
 ```
-├── LICENSE              #Licensing information
-├── README.md            #Project documentation
-├── requirements.txt     #Python dependencies
-├── setup.py             #Package install script
-└── vascular_classifier  #Main Python package
-    ├── __init__.py      #Package initializer
-    ├── app.py           #Streamlit UI entrypoint
-    ├── model_utils.py   #Prediction and preprocessing library
-    └── assets           #Serialized model and metadata
-        ├── scaler.pkl       #Saved StandardScaler object
-        └── xgb_model.pkl    #Saved XGBoost model
+├── LICENSE              #Licensing information.
+├── StreamlitGUI.gif     #Video on how the program works.
+├── README.md            #Project documentation.
+├── requirements.txt     #Python dependencies.
+├── setup.py             #Package install script.
+└── vascular_classifier  #Main Python package.
+    ├── __init__.py      #Package initializer.
+    ├── app.py           #Streamlit UI entrypoint.
+    ├── model_utils.py   #Prediction and preprocessing library.
+    └── assets           #Serialized model and metadata.
+        ├── scaler.pkl       #Saved StandardScaler object.
+        └── xgb_model.pkl    #Saved XGBoost model.
 
 ```
 
