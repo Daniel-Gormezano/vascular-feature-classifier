@@ -87,16 +87,16 @@ In a notebook cell, ensure your kernel sees the package and run:
 #(Re)install in the current kernel environment.
 %pip install -e .
 
-#Import and run predictions.
+#Importing and running predictions.
 import pandas as pd
 from vascular_classifier.model_utils import predict_batch
 
-#Load your CSV file.
+#Loading your CSV file.
 df = pd.read_csv("path/to/your_data.csv")
-#Normalize any `<` or `>` in column names to abide by XGBoost column-naming conventions.
+#Normalizing any `<` or `>` in column names to abide by XGBoost column-naming conventions.
 df.columns = df.columns.str.replace('<','_', regex = False).str.replace('>','_', regex = False)
 
-#Generate predictions.
+#Generating predictions.
 results = predict_batch(df)
 results.head()
 ```
@@ -110,7 +110,7 @@ results.head()
    ```
 2. Upload your CSV file using the sidebar.
 3. View colored predictions.
-4. Download an Excel file with styling.
+4. Download an Excel file with styling, metrics, and the resulting ROC curve.
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
