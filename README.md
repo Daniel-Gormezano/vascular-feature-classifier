@@ -145,6 +145,7 @@ results.head()
     ├── model_utils.py   #Prediction and preprocessing library.
     └── assets           #Serialized model and metadata.
         ├── scaler.pkl       #Saved StandardScaler object.
+        ├── feature_list.txt #List of all features used in the model (this file is not needed to run the program).
         └── xgb_model.pkl    #Saved XGBoost model.
 
 ```
